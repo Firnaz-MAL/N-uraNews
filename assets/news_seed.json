@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "title": "NASA Temukan Air di Bulan, Misi Artemis Dipercepat",
+    "description": "NASA mengumumkan penemuan air di permukaan bulan yang membuka peluang baru untuk eksplorasi dan kolonisasi.",
+    "source": "BBC Indonesia",
+    "imageUrl": "https://picsum.photos/seed/1/600/400",
+    "publishedAt": "2025-10-12",
+    "isBookmarked": false
+  },
+  {
+    "id": "2",
+    "title": "Startup Indonesia Raih Pendanaan Seri B Senilai $20 Juta",
+    "description": "Perusahaan teknologi agrikultur asal Bandung berhasil menarik investor global untuk ekspansi ke Asia Tenggara.",
+    "source": "TechCrunch",
+    "imageUrl": "https://picsum.photos/seed/2/600/400",
+    "publishedAt": "2025-10-11",
+    "isBookmarked": false
+  },
+  {
+    "id": "3",
+    "title": "Festival Film Cannes 2025: Film Asia Dominasi Nominasi",
+    "description": "Film dari Korea Selatan, Jepang, dan Indonesia masuk dalam daftar nominasi utama Festival Film Cannes tahun ini.",
+    "source": "Reuters",
+    "imageUrl": "https://picsum.photos/seed/3/600/400",
+    "publishedAt": "2025-10-10",
+    "isBookmarked": false
+  },
+  {
+    "id": "4",
+    "title": "Apple Rilis Vision Pro di Asia, Harga Mulai Rp 50 Juta",
+    "description": "Apple resmi meluncurkan Vision Pro di pasar Asia dengan fitur mixed reality yang revolusioner.",
+    "source": "The Verge",
+    "imageUrl": "https://picsum.photos/seed/4/600/400",
+    "publishedAt": "2025-10-09",
+    "isBookmarked": false
+  },
+  {
+    "id": "5",
+    "title": "Indonesia Tuan Rumah KTT Iklim Asia 2025",
+    "description": "Jakarta menjadi tuan rumah konferensi iklim terbesar di Asia, membahas transisi energi dan keberlanjutan.",
+    "source": "Kompas",
+    "imageUrl": "https://picsum.photos/seed/5/600/400",
+    "publishedAt": "2025-10-08",
+    "isBookmarked": false
+  },
+  {
+    "id": "6",
+    "title": "Tesla Umumkan Pabrik Baru di India, Fokus Produksi Mobil Listrik Murah",
+    "description": "Tesla akan membangun fasilitas produksi di India untuk memperluas pasar Asia dan menghadirkan mobil listrik dengan harga terjangkau.",
+    "source": "CNN Indonesia",
+    "imageUrl": "https://picsum.photos/seed/6/600/400",
+    "publishedAt": "2025-10-13",
+    "isBookmarked": false
+  },
+  {
+    "id": "7",
+    "title": "Google Luncurkan AI Gemini, Penantang GPT-5",
+    "description": "Google resmi memperkenalkan Gemini, model AI generatif terbaru yang diklaim lebih efisien dan aman dibanding kompetitor.",
+    "source": "Wired",
+    "imageUrl": "https://picsum.photos/seed/7/600/400",
+    "publishedAt": "2025-10-12",
+    "isBookmarked": false
+  },
+  {
+    "id": "8",
+    "title": "Bali Jadi Tuan Rumah World Tourism Forum 2025",
+    "description": "Forum pariwisata dunia digelar di Bali, membahas tren perjalanan berkelanjutan dan digitalisasi industri wisata.",
+    "source": "National Geographic",
+    "imageUrl": "https://picsum.photos/seed/8/600/400",
+    "publishedAt": "2025-10-11",
+    "isBookmarked": false
+  },
+  {
+    "id": "9",
+    "title": "Meta Hadirkan Fitur Mixed Reality di Instagram",
+    "description": "Meta memperkenalkan fitur baru di Instagram yang memungkinkan pengguna berinteraksi dengan objek virtual secara real-time.",
+    "source": "The Guardian",
+    "imageUrl": "https://picsum.photos/seed/9/600/400",
+    "publishedAt": "2025-10-10",
+    "isBookmarked": false
+  },
+  {
+    "id": "10",
+    "title": "UNESCO Tetapkan Candi Muaro Jambi Sebagai Warisan Dunia",
+    "description": "Candi Muaro Jambi di Sumatera resmi masuk daftar situs warisan dunia UNESCO karena nilai sejarah dan arsitekturnya.",
+    "source": "Kompas",
+    "imageUrl": "https://picsum.photos/seed/10/600/400",
+    "publishedAt": "2025-10-09",
+    "isBookmarked": false
+  }
+]
