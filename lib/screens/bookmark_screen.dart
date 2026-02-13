@@ -36,7 +36,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF6D83F2),
+      backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -46,16 +46,19 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               const Text(
                 '🔖 Berita Tersimpan',
                 style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: 20),
               Expanded(
                 child: bookmarks.isEmpty
                     ? const Center(
-                        child: Text('Belum ada berita yang disimpan',
-                            style: TextStyle(color: Colors.white70)),
+                        child: Text(
+                          'Belum ada berita yang disimpan',
+                          style: TextStyle(color: Colors.white70),
+                        ),
                       )
                     : ListView.builder(
                         itemCount: bookmarks.length,
@@ -66,7 +69,8 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                             child: Card(
                               color: Colors.white.withOpacity(0.08),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
                               child: ListTile(
                                 leading: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
@@ -75,14 +79,27 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                                     width: 100,
                                     height: 80,
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Container(
+                                              width: 100,
+                                              height: 80,
+                                              color: Colors.white12,
+                                              child: const Icon(
+                                                Icons.broken_image,
+                                                color: Colors.white54,
+                                              ),
+                                            ),
                                   ),
                                 ),
-                                title: Text(n.title,
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                subtitle: Text(n.source,
-                                    style: const TextStyle(
-                                        color: Colors.white70)),
+                                title: Text(
+                                  n.title,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                subtitle: Text(
+                                  n.source,
+                                  style: const TextStyle(color: Colors.white70),
+                                ),
                                 trailing: IconButton(
                                   icon: Icon(
                                     n.isBookmarked

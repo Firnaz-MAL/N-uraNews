@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/responsive.dart';
+import '../core/theme.dart';
 import 'main_screen.dart';
 import 'admin/dashboard_screen.dart';
 
@@ -7,7 +8,11 @@ class WelcomeScreen extends StatefulWidget {
   final String userName;
   final bool isAdmin;
 
-  const WelcomeScreen({required this.userName, this.isAdmin = false, super.key});
+  const WelcomeScreen({
+    required this.userName,
+    this.isAdmin = false,
+    super.key,
+  });
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -22,11 +27,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 900));
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
     _fadeAnim = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.15), end: Offset.zero)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
+    _slideAnim = Tween<Offset>(
+      begin: const Offset(0, 0.15),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
     _controller.forward();
   }
 
@@ -42,20 +51,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6D83F2), Color(0xFF8E54E9)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AppTheme.mainGradient),
         child: SafeArea(
           child: FadeTransition(
             opacity: _fadeAnim,
             child: SlideTransition(
               position: _slideAnim,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 64, vertical: 32),
+                padding: EdgeInsets.symmetric(
+                  horizontal: isMobile ? 24 : 64,
+                  vertical: 32,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -72,7 +78,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       widget.isAdmin
                           ? 'Selamat datang kembali, Admin — siap kelola berita hari ini?'
                           : 'Selamat datang di NéuraNews — siap menyelami berita hari ini?',
-                      style: const TextStyle(fontSize: 18, color: Colors.white70),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white70,
+                      ),
                     ),
                     const SizedBox(height: 40),
                     Container(
@@ -80,7 +89,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                         image: const DecorationImage(
-                          image: NetworkImage('https://picsum.photos/600/300?blur=3'),
+                          image: NetworkImage(
+                            'https://picsum.photos/600/300?blur=3',
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -90,7 +101,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           gradient: LinearGradient(
                             colors: [
                               Colors.black.withOpacity(0.6),
-                              Colors.transparent
+                              Colors.transparent,
                             ],
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
@@ -106,7 +117,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            shadows: [Shadow(color: Colors.black45, blurRadius: 4)],
+                            shadows: [
+                              Shadow(color: Colors.black45, blurRadius: 4),
+                            ],
                           ),
                         ),
                       ),
@@ -129,7 +142,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             MaterialPageRoute(
                               builder: (_) => widget.isAdmin
                                   ? const DashboardScreen()
-                                  : MainScreen(userName: widget.userName), // ✅ kirim nama ke MainScreen
+                                  : MainScreen(
+                                      userName: widget.userName,
+                                    ), // ✅ kirim nama ke MainScreen
                             ),
                           );
                         },

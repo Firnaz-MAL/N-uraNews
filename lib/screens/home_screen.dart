@@ -23,7 +23,11 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const Text(
                   '🧠 NéuraNews',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 // breaking: first 3
@@ -36,14 +40,32 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, idx) {
                         final n = list[idx];
                         return GestureDetector(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => DetailScreen(news: n))),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DetailScreen(news: n),
+                            ),
+                          ),
                           child: Container(
                             width: 300,
                             margin: const EdgeInsets.only(right: 12),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(14)),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(14),
-                              child: Image.network(n.imageUrl, fit: BoxFit.cover),
+                              child: Image.network(
+                                n.imageUrl,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(
+                                      color: Colors.white12,
+                                      child: const Icon(
+                                        Icons.broken_image,
+                                        color: Colors.white54,
+                                      ),
+                                    ),
+                              ),
                             ),
                           ),
                         );
@@ -51,28 +73,71 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 const SizedBox(height: 30),
-                const Text('🌍 Semua Berita', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white)),
+                const Text(
+                  '🌍 Semua Berita',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
                 const SizedBox(height: 16),
-                ...list.map((news) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Card(
-                        color: Colors.white.withOpacity(0.08),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                        child: ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(news.imageUrl, width: 100, fit: BoxFit.cover),
+                ...list
+                    .skip(list.length >= 3 ? 3 : list.length)
+                    .map(
+                      (news) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Card(
+                          color: Colors.white.withOpacity(0.08),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
                           ),
-                          title: Text(news.title, style: const TextStyle(color: Colors.white)),
-                          subtitle: Text(news.source, style: const TextStyle(color: Colors.white70)),
-                          trailing: IconButton(
-                            icon: Icon(news.isBookmarked ? Icons.bookmark : Icons.bookmark_border, color: Colors.white),
-                            onPressed: () => LocalStorage.toggleBookmark(news),
+                          child: ListTile(
+                            leading: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                news.imageUrl,
+                                width: 100,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(
+                                      width: 100,
+                                      color: Colors.white12,
+                                      child: const Icon(
+                                        Icons.broken_image,
+                                        color: Colors.white54,
+                                      ),
+                                    ),
+                              ),
+                            ),
+                            title: Text(
+                              news.title,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                              news.source,
+                              style: const TextStyle(color: Colors.white70),
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(
+                                news.isBookmarked
+                                    ? Icons.bookmark
+                                    : Icons.bookmark_border,
+                                color: Colors.white,
+                              ),
+                              onPressed: () =>
+                                  LocalStorage.toggleBookmark(news),
+                            ),
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => DetailScreen(news: news),
+                              ),
+                            ),
                           ),
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => DetailScreen(news: news))),
                         ),
                       ),
-                    )),
+                    ),
               ],
             );
           },

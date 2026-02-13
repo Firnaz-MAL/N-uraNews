@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/theme.dart';
 import '../core/responsive.dart';
 import 'welcome_screen.dart';
 
@@ -15,13 +16,7 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6D83F2), Color(0xFF8E54E9)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AppTheme.mainGradient),
         child: Center(
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 600),
@@ -48,8 +43,12 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 35.h),
                 _buildTextField(emailCtrl, 'Email', Icons.email_outlined),
                 SizedBox(height: 20.h),
-                _buildTextField(passCtrl, 'Password', Icons.lock_outline,
-                    obscure: true),
+                _buildTextField(
+                  passCtrl,
+                  'Password',
+                  Icons.lock_outline,
+                  obscure: true,
+                ),
                 SizedBox(height: 30.h),
                 SizedBox(
                   width: double.infinity,
@@ -95,8 +94,11 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildTextField(
-      TextEditingController ctrl, String label, IconData icon,
-      {bool obscure = false}) {
+    TextEditingController ctrl,
+    String label,
+    IconData icon, {
+    bool obscure = false,
+  }) {
     return TextField(
       controller: ctrl,
       obscureText: obscure,

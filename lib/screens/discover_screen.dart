@@ -1,4 +1,3 @@
-// lib/screens/discover_screen.dart
 import 'package:flutter/material.dart';
 import '../models/news.dart';
 import '../utils/local_storage.dart';
@@ -39,13 +38,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   List<News> get filtered {
     final q = _searchCtrl.text.toLowerCase();
     return all.where((news) {
-      final matchesQuery = news.title.toLowerCase().contains(q) ||
+      final matchesQuery =
+          news.title.toLowerCase().contains(q) ||
           news.description.toLowerCase().contains(q);
       final matchesCategory = selectedCategory == 'Semua'
           ? true
-          : news.title
-              .toLowerCase()
-              .contains(selectedCategory.toLowerCase());
+          : news.title.toLowerCase().contains(selectedCategory.toLowerCase());
       return matchesQuery && matchesCategory;
     }).toList();
   }
@@ -55,7 +53,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     final categories = ['Semua', 'Teknologi', 'Dunia', 'Islami', 'Lifestyle'];
 
     return Scaffold(
-      backgroundColor: const Color(0xFF6D83F2),
+      backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -65,9 +63,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               const Text(
                 '🔎 Temukan Berita',
                 style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: 16),
               TextField(
@@ -78,8 +77,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   hintStyle: const TextStyle(color: Colors.white54),
                   filled: true,
                   fillColor: Colors.white.withOpacity(0.1),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -99,11 +100,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         label: Text(
                           cat,
                           style: TextStyle(
-                              color: isSelected
-                                  ? const Color.fromARGB(255, 42, 1, 78)
-                                  : Colors.white70,
-                              fontWeight:
-                                  isSelected ? FontWeight.bold : null),
+                            color: isSelected
+                                ? const Color.fromARGB(255, 42, 1, 78)
+                                : Colors.white70,
+                            fontWeight: isSelected ? FontWeight.bold : null,
+                          ),
                         ),
                         selected: isSelected,
                         selectedColor: const Color(0xFF8E54E9),
@@ -119,8 +120,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               Expanded(
                 child: filtered.isEmpty
                     ? const Center(
-                        child: Text('Berita tidak ditemukan',
-                            style: TextStyle(color: Colors.white70)),
+                        child: Text(
+                          'Berita tidak ditemukan',
+                          style: TextStyle(color: Colors.white70),
+                        ),
                       )
                     : ListView.builder(
                         itemCount: filtered.length,
@@ -131,7 +134,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             child: Card(
                               color: Colors.white.withOpacity(0.08),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14)),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
                               child: ListTile(
                                 leading: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
@@ -140,14 +144,27 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     width: 100,
                                     height: 80,
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Container(
+                                              width: 100,
+                                              height: 80,
+                                              color: Colors.white12,
+                                              child: const Icon(
+                                                Icons.broken_image,
+                                                color: Colors.white54,
+                                              ),
+                                            ),
                                   ),
                                 ),
-                                title: Text(n.title,
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                subtitle: Text(n.source,
-                                    style: const TextStyle(
-                                        color: Colors.white70)),
+                                title: Text(
+                                  n.title,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                subtitle: Text(
+                                  n.source,
+                                  style: const TextStyle(color: Colors.white70),
+                                ),
                                 trailing: IconButton(
                                   icon: Icon(
                                     n.isBookmarked

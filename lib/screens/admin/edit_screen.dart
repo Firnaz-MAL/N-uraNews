@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/news.dart';
+import '../../core/theme.dart';
 
 class EditScreen extends StatefulWidget {
   final News? news;
@@ -24,7 +25,8 @@ class _EditScreenState extends State<EditScreen> {
   }
 
   void _saveNews() {
-    final id = widget.news?.id ?? DateTime.now().millisecondsSinceEpoch.toString();
+    final id =
+        widget.news?.id ?? DateTime.now().millisecondsSinceEpoch.toString();
     final newNews = News(
       id: id,
       title: titleCtrl.text.trim(),
@@ -33,7 +35,8 @@ class _EditScreenState extends State<EditScreen> {
           ? imageCtrl.text.trim()
           : 'https://picsum.photos/400/200?random',
       source: widget.news?.source ?? 'Admin',
-      publishedAt: widget.news?.publishedAt ??
+      publishedAt:
+          widget.news?.publishedAt ??
           DateTime.now().toIso8601String().split('T').first,
     );
 
@@ -46,13 +49,7 @@ class _EditScreenState extends State<EditScreen> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6D83F2), Color(0xFF8E54E9)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AppTheme.mainGradient),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),

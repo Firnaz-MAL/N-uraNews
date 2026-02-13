@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/news.dart';
 import '../../utils/local_storage.dart';
 import '../../widgets/admin_card.dart';
+import '../../core/theme.dart';
 import '../admin/edit_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -15,20 +16,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    LocalStorage.init(); // Pastikan data dimuat dari JSON
+    // LocalStorage.init() is already called in main.dart
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6D83F2), Color(0xFF8E54E9)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AppTheme.mainGradient),
         child: SafeArea(
           child: ValueListenableBuilder<List<News>>(
             valueListenable: LocalStorage.newsNotifier,
@@ -100,10 +95,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
 
           if (result != null && result is News) {
-            // Tambahkan berita baru ke list
+            // Tambahkan berita baru ke list dan simpan ke local storage
             final updatedList = List<News>.from(LocalStorage.newsNotifier.value)
               ..insert(0, result);
-            LocalStorage.newsNotifier.value = updatedList;
+            LocalStorage.saveAllNews(updatedList);
           }
         },
       ),
